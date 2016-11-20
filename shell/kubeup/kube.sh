@@ -1,13 +1,16 @@
 #!/bin/bash
 set -x
 
-# should have vagrant-libvirt installed
+# pull the latest releases
 wget https://github.com/kubernetes/kubernetes/releases/download/v1.4.4/kubernetes.tar.gz
-tar xvzf kubernetes.tar.gz 
+tar xvzf kubernetes.tar.gz
 cd kubernetes/
 
 export KUBERNETES_PROVIDER=vagrant
+
+# RAM in MB for each machine
 export KUBERNETES_MEMORY=2048
+# Number of worker nodes
 export NUM_NODES=2
 
 

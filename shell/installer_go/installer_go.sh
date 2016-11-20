@@ -32,23 +32,13 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 
 
 ###############################
-# clone henge
-cd
-mkdir -p $GOPATH/src/github.com/redhat-developer
-cd $GOPATH/src/github.com/redhat-developer
-git clone https://github.com/surajssd/henge
-cd henge/
-git remote add upstream https://github.com/redhat-developer/henge
-git pull --ff upstream master
-
-###############################
 # clone kompose
 cd
-mkdir -p $GOPATH/src/github.com/skippbox
-cd $GOPATH/src/github.com/skippbox
+mkdir -p $GOPATH/src/github.com/kubernetes-incubator
+cd $GOPATH/src/github.com/kubernetes-incubator
 git clone https://github.com/surajssd/kompose.git
 cd kompose
-git remote add upstream https://github.com/skippbox/kompose
+git remote add upstream https://github.com/kubernetes-incubator/kompose
 git pull --ff upstream master
 
 
