@@ -24,16 +24,8 @@ sudo dnf -y install git wget vim python2 cmake gcc-c++ gcc python-devel make \
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
 ###############################
 # export all the paths and variables
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
-mkdir $HOME/work
-echo "export GOPATH=\$HOME/work" >> ~/.bash_profile
-echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bash_profile
-echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bash_profile
-
-
-export GOPATH=$HOME/work
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
 ###############################
 # Install gotools
 

@@ -17,16 +17,7 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 
 #===================================================================
 # create go workspace
-mkdir $HOME/go
-
-# export environment variables
-export GOPATH=$HOME/go
-echo 'export GOPATH=$HOME/go' >> ~/.bash_profile
-
-export PATH=$PATH:$GOPATH/bin
-echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bash_profile
-
-
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
 #===================================================================
 # pip installed softwares
