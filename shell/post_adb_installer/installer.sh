@@ -5,18 +5,8 @@ set -x
 ###############################
 # create all the files
 
-cat > ~/.gitconfig <<EOF 
-[user]
-    name = Suraj Deshmukh
-    email = surajssd009005@gmail.com
-[color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = true
-  pager = true
-EOF
+cd
+curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/configs/.gitconfig
 
 cat > ~/.vimrc <<EOF
 set nu
