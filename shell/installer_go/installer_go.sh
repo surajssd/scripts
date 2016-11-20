@@ -28,8 +28,7 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 
 ###############################
 # Install gotools
-
-go get github.com/tools/godep
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
 
 
 ###############################
@@ -74,24 +73,6 @@ cd ~/.vim/bundle/YouCompleteMe
 git submodule update --init --recursive
 ./install.py
 cd
-
-# goimports
-go get -u golang.org/x/tools/cmd/goimports
-
-# gocode
-go get -u github.com/nsf/gocode
-
-# godef
-go get -u github.com/rogpeppe/godef
-
-# golint
-go get -u github.com/golang/lint/golint
-
-# errcheck
-go get -u github.com/kisielk/errcheck
-
-# oracle
-go get -u golang.org/x/tools/cmd/oracle
 
 ##
 echo "Run ':GoInstallBinaries' in your vim when you open it!"

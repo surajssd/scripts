@@ -20,6 +20,10 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
 #===================================================================
+# install gotools
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
+
+#===================================================================
 # pip installed softwares
 echo 'source virtualenvwrapper.sh' >> ~/.bashrc
 
@@ -75,25 +79,6 @@ cd ~/.vim/bundle/YouCompleteMe
 git submodule update --init --recursive
 ./install.sh
 cd
-
-# goimports
-go get -u golang.org/x/tools/cmd/goimports
-
-# gocode
-go get -u github.com/nsf/gocode
-
-# godef
-go get -u github.com/rogpeppe/godef
-
-# golint
-go get -u github.com/golang/lint/golint
-
-# errcheck
-go get -u github.com/kisielk/errcheck
-
-# oracle
-go get -u golang.org/x/tools/cmd/oracle
-
 
 #===================================================================
 
