@@ -2,7 +2,7 @@
 set -x
 
 # pull the latest releases
-wget https://github.com/kubernetes/kubernetes/releases/download/v1.4.4/kubernetes.tar.gz
+wget https://github.com/kubernetes/kubernetes/releases/download/v1.4.6/kubernetes.tar.gz
 tar xvzf kubernetes.tar.gz
 cd kubernetes/
 
