@@ -20,9 +20,8 @@ sudo dnf -y update
 sudo dnf -y install git wget vim python2 cmake gcc-c++ gcc python-devel make \
                     percol byobu nload
 
-wget https://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.7.linux-amd64.tar.gz
-
+# install go latest
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
 ###############################
 # export all the paths and variables
 

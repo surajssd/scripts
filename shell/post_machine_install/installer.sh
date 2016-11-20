@@ -8,9 +8,12 @@ echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
 su -c 'dnf install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
 
 sudo dnf -y update
-sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittorrent vim python-devel ruby-devel vagrant vagrant-libvirt httrack tuxtype2 hstr cmake go rpm-build youtube-dl gnome-tweak-tool python3-ipython percol python-virtualenvwrapper
+sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittorrent vim python-devel ruby-devel vagrant vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl gnome-tweak-tool python3-ipython percol python-virtualenvwrapper
 
 sudo dnf -y groupinstall "Development Tools"
+
+# install go latest
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
 
 #===================================================================
 # create go workspace
