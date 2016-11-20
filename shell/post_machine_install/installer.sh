@@ -12,11 +12,6 @@ sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittor
 
 sudo dnf -y groupinstall "Development Tools"
 
-curl -L git.io/sublimetext | sh
-
-sudo dnf copr enable rommon/telegram
-sudo dnf -y install telegram-desktop
-
 #===================================================================
 # create go workspace
 mkdir $HOME/go
