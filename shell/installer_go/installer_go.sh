@@ -10,10 +10,13 @@ curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/configs/
 
 
 ###############################
+# add fastest mirror
+cat /etc/dnf/dnf.conf | grep 'fastestmirror'
+if [ $? -ne 0 ]; then
+    echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
+fi
+
 # install the basic required softwares
-
-echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
-
 sudo dnf -y update
 # git for go, wget to pull go, python2 for pip and percol
 # cmake, gcc, gcc-c++, python-devel, make for vim plugin installer

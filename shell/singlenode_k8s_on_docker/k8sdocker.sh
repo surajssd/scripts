@@ -1,7 +1,12 @@
 #!/bin/bash
 set -x
 
-echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
+# add fastest mirror
+cat /etc/dnf/dnf.conf | grep 'fastestmirror'
+if [ $? -ne 0 ]; then
+    echo 'fastestmirror=1' | sudo tee -a /etc/dnf/dnf.conf
+fi
+
 echo '127.0.0.1 localhost' | cat - /etc/hosts > temp && sudo mv temp /etc/hosts
 
 sudo dnf -y install docker
@@ -42,8 +47,8 @@ docker run -d \
         --cluster-dns=10.0.0.10 \
         --cluster-domain=cluster.local \
         --allow-privileged --v=2
-        
-        
+
+
 
 curl -sSL "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" > /home/vagrant/kubectl
 sudo mv /home/vagrant/kubectl /usr/bin/
