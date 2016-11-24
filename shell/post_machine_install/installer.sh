@@ -37,7 +37,6 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 
 #===================================================================
 # pip installed softwares
-echo 'source virtualenvwrapper.sh' >> ~/.bashrc
 
 
 #===================================================================
