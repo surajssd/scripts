@@ -17,7 +17,15 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 
 #===================================================================
 # create go workspace
-curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
+mkdir $HOME/go
+echo "export GOPATH=\$HOME/work" >> ~/.bashrc
+echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
+
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
 
 #===================================================================
 # install gotools
