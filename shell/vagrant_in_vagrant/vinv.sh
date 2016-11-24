@@ -13,21 +13,21 @@ echo '
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
 
-  #config.vm.box = "fed23"
-
-
   config.vm.define "fedora" do |fedora|
-    fedora.vm.box = "fedora/23-cloud-base"
+    fedora.vm.box = "fedora/25-cloud-base"
     config.vm.hostname = "fedora"
   end
 
   config.vm.provider "libvirt" do |libvirt, override|
-    libvirt.nested = true
-    libvirt.cpu_mode = "host-model"
     libvirt.driver = "kvm"
     libvirt.memory = 4096
     libvirt.cpus = 4
+    libvirt.cpu_mode = 'host-passthrough'
   end
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    echo '127.0.0.1 localhost' | cat - /etc/hosts > temp && sudo mv temp /etc/hosts
+  SHELL
 
 end
 ' > Vagrantfile
