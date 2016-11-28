@@ -12,7 +12,7 @@ fi
 su -c 'dnf -y install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
 
 sudo dnf -y update
-sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittorrent vim python-devel ruby-devel vagrant vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl gnome-tweak-tool python3-ipython percol python-virtualenvwrapper docker git hg gcc make byobu nload htop
+sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittorrent vim python-devel ruby-devel vagrant vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl gnome-tweak-tool python3-ipython percol python-virtualenvwrapper docker git hg gcc make byobu nload htop libvirt-client
 
 sudo dnf -y groupinstall "Development Tools"
 
@@ -47,7 +47,10 @@ curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/configs/
 
 #==================================================================
 # url shortner
+mkdir -p ~/.local/bin
 curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/shorturl.sh
+chmod a+x ./shorturl.sh
+mv ./shorturl.sh ~/.local/bin/
 
 #===================================================================
 # Install pathogen
@@ -80,12 +83,6 @@ cd
 
 
 cd
-git clone https://github.com/pindexis/qfc $HOME/.qfc
-echo '#=================================================================' >> ~/.bashrc
-echo '[[ -s "$HOME/.qfc/bin/qfc.sh" ]] && source "$HOME/.qfc/bin/qfc.sh"' >> ~/.bashrc
-echo '#' >> ~/.bashrc
-
-
 git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 echo '#=================================================================' >> ~/.bashrc
 echo 'source ~/.bash-git-prompt/gitprompt.sh' >> ~/.bashrc

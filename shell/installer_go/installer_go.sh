@@ -82,12 +82,6 @@ vim -c ':GoInstallBinaries' -c ':q!'
 # install other things
 
 cd
-git clone https://github.com/pindexis/qfc $HOME/.qfc
-echo '#=================================================================' >> ~/.bashrc
-echo '[[ -s "$HOME/.qfc/bin/qfc.sh" ]] && source "$HOME/.qfc/bin/qfc.sh"' >> ~/.bashrc
-echo '#' >> ~/.bashrc
-
-
 git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
 echo '#=================================================================' >> ~/.bashrc
 echo 'source ~/.bash-git-prompt/gitprompt.sh' >> ~/.bashrc
