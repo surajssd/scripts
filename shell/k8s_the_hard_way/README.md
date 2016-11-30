@@ -2,7 +2,9 @@
 ## On your base machine
 
 
-# Install CFSSL
+#### Install CFSSL
+
+```bash
 wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 chmod +x cfssl_linux-amd64
 sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
@@ -11,10 +13,13 @@ sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
 wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 chmod +x cfssljson_linux-amd64
 sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
+```
 
-# Setting up a Certificate Authority
-# Create the CA configuration file
+#### Setting up a Certificate Authority
+#### Create the CA configuration file
 
+
+```json
 echo '{
   "signing": {
     "default": {
@@ -28,9 +33,11 @@ echo '{
     }
   }
 }' > ca-config.json
+```
 
-# Generate the CA certificate and private key
+#### Generate the CA certificate and private key
 
+```json
 echo '{
   "CN": "Kubernetes",
   "key": {
@@ -47,13 +54,16 @@ echo '{
     }
   ]
 }' > ca-csr.json
+```
 
+```bash
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 openssl x509 -in ca.pem -text -noout
+```
 
+#### Generate the single Kubernetes TLS Cert
 
-# Generate the single Kubernetes TLS Cert
-
+```json
 cat > kubernetes-csr.json <<EOF
 {
   "CN": "kubernetes",
@@ -83,26 +93,28 @@ cat > kubernetes-csr.json <<EOF
   ]
 }
 EOF
+```
 
-
+```bash
 cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
-  
-  
+
+
 openssl x509 -in kubernetes.pem -text -noout
+```
 
+#### now copy all the certs in all the hosts
 
-## now copy all the certs in all the hosts
-
-#in home directory
+#### in home directory
 
 
 ## all:
 
+```ruby
 cat > etcd.service <<"EOF"
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -143,8 +155,8 @@ Vagrant.configure("2") do |config|
 
 end
 EOF
-
-
+```
+```bash
 vagrant up
 
 # on all machines
@@ -155,7 +167,7 @@ echo "192.168.50.10 c1" | sudo tee -a /etc/hosts
 echo "192.168.50.11 c2" | sudo tee -a /etc/hosts
 echo "192.168.50.20 w1" | sudo tee -a /etc/hosts
 echo "192.168.50.21 w2" | sudo tee -a /etc/hosts
-
+```
 
 #########################################################################################
 
@@ -163,13 +175,17 @@ echo "192.168.50.21 w2" | sudo tee -a /etc/hosts
 ## only on controller nodes
 
 
-# TLS Certificates
+#### TLS Certificates
+
+```bash
 cd
 sudo mkdir -p /etc/etcd/
 sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
+```
 
-# Download and Install the etcd binaries
+#### Download and Install the etcd binaries
 
+```bash
 wget https://github.com/coreos/etcd/releases/download/v3.0.10/etcd-v3.0.10-linux-amd64.tar.gz
 tar -xvf etcd-v3.0.10-linux-amd64.tar.gz
 sudo mv etcd-v3.0.10-linux-amd64/etcd* /usr/bin/
@@ -203,22 +219,26 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
+#### Set The Internal IP Address
+##### on c1
 
-# Set The Internal IP Address
-## on c1
-
+```bash
 export INTERNAL_IP=192.168.50.10
 export ETCD_NAME=c1
+```
 
-## on c2
+#### on c2
 
+```bash
 export INTERNAL_IP=192.168.50.11
 export ETCD_NAME=c2
+```
 
-## on c1 and c2 
+#### on c1 and c2
 
-
+```bash
 sed -i s/INTERNAL_IP/${INTERNAL_IP}/g etcd.service
 sed -i s/ETCD_NAME/${ETCD_NAME}/g etcd.service
 
@@ -228,19 +248,22 @@ sudo systemctl daemon-reload
 sudo systemctl enable etcd
 sudo systemctl start etcd
 sudo systemctl status etcd --no-pager
-
+```
 
 =========================================================================
-## Bootstrapping an H/A Kubernetes Control Plane
+### Bootstrapping an H/A Kubernetes Control Plane
 
 
-## on both c1 and c2
+#### on both c1 and c2
 
-# TLS Certificates
+#### TLS Certificates
+```bash
 sudo mkdir -p /var/lib/kubernetes
 sudo cp ca.pem kubernetes-key.pem kubernetes.pem /var/lib/kubernetes/
+```
 
-# Download and install the Kubernetes controller binaries
+#### Download and install the Kubernetes controller binaries
+```bash
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kube-apiserver
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kube-controller-manager
 
@@ -249,23 +272,27 @@ wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/
 
 chmod +x kube-apiserver kube-controller-manager kube-scheduler kubectl
 sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/bin/
+```
 
-# Kubernetes API Server
+#### Kubernetes API Server
 
-# Setup Authentication and Authorization
-# Authentication
+#### Setup Authentication and Authorization
+#### Authentication
+```bash
 wget https://raw.githubusercontent.com/kelseyhightower/kubernetes-the-hard-way/master/token.csv
 sudo mv token.csv /var/lib/kubernetes/
+```
 
-
-# Authorization
+#### Authorization
+```bash
 wget https://raw.githubusercontent.com/kelseyhightower/kubernetes-the-hard-way/master/authorization-policy.jsonl
 cat authorization-policy.jsonl
 sudo mv authorization-policy.jsonl /var/lib/kubernetes/
-
+```
 
 ### make sure the IP addresses in these machines are of the etcd machines
 
+```bash
 cat > kube-apiserver.service <<"EOF"
 [Unit]
 Description=Kubernetes API Server
@@ -298,21 +325,24 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
 
+#### on c1
 
-## on c1
-
+```bash
 export INTERNAL_IP=192.168.50.10
+```
 
+#### on c2
 
-## on c2
-
+```bash
 export INTERNAL_IP=192.168.50.11
+```
 
+#### on both machines
 
-## on both machines
-
+```bash
 sed -i s/INTERNAL_IP/$INTERNAL_IP/g kube-apiserver.service
 sudo mv kube-apiserver.service /etc/systemd/system/
 
@@ -320,11 +350,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable kube-apiserver
 sudo systemctl start kube-apiserver
 sudo systemctl status kube-apiserver --no-pager
+```
 
 
+#### kubernetes controller manager
 
-## kubernetes controller manager
-
+```bash
 cat > kube-controller-manager.service <<"EOF"
 [Unit]
 Description=Kubernetes Controller Manager
@@ -356,12 +387,12 @@ sudo systemctl daemon-reload
 sudo systemctl enable kube-controller-manager
 sudo systemctl start kube-controller-manager
 sudo systemctl status kube-controller-manager --no-pager
-
+```
 
 
 ### k8s scheduler
 
-
+```bash
 cat > kube-scheduler.service <<"EOF"
 [Unit]
 Description=Kubernetes Scheduler
@@ -386,39 +417,44 @@ sudo systemctl daemon-reload
 sudo systemctl enable kube-scheduler
 sudo systemctl start kube-scheduler
 sudo systemctl status kube-scheduler --no-pager
-
+```
 
 
 ## verfication
 
+```bash
 kubectl get componentstatuses
+```
 
 ################################################################################
-## Bootstraping k8s workers
+### Bootstraping k8s workers
 
-## Install flannel and docker
+### Install flannel and docker
 
 
-## install flannel on the workers
-# on w1 and w2
+### install flannel on the workers
+#### on w1 and w2
 
+```bash
 sudo yum -y install flannel
+```
 
-## on c1 and c2
+#### on c1 and c2
 
-etcdctl --ca-file ca.pem set flannel/network/config '{                                   
+```bash
+etcdctl --ca-file ca.pem set flannel/network/config '{
   "Network": "10.200.0.0/16",
   "SubnetLen": 24,
   "Backend": {
     "Type": "vxlan"
   }
 }'
+```
+
+#### on w1 and w2
 
 
-## on w1 and w2
-
-
-
+```bash
 echo '
 FLANNEL_ETCD=https://192.168.50.10:2379,https://192.168.50.11:2379
 FLANNEL_ETCD_KEY="/flannel/network"
@@ -428,11 +464,12 @@ FLANNEL_OPTIONS='--etcd-cafile="/home/vagrant/ca.pem"'
 sudo systemctl start flanneld
 sudo systemctl enable flanneld
 sudo systemctl status flanneld
+```
 
 
+### install docker on workers
 
-# install docker on workers
-
+```bash
 wget https://get.docker.com/builds/Linux/x86_64/docker-1.12.1.tgz
 tar -xvf docker-1.12.1.tgz
 sudo cp docker/docker* /usr/bin/
@@ -474,27 +511,30 @@ sudo systemctl status docker
 
 sudo groupadd docker
 sudo usermod -aG docker vagrant
+```
 
 
+#### on w1 w2
 
-## on w1 w2
-
-# Move the TLS certificates in place
+##### Move the TLS certificates in place
+```bash
 sudo mkdir -p /var/lib/kubernetes
 sudo cp ca.pem kubernetes-key.pem kubernetes.pem /var/lib/kubernetes/
+```
 
+#### install kubelet
 
-# install kubelet
+#### on w1 w2
 
-## on w1 w2
-
+```bash
 sudo mkdir -p /opt/cni
 wget https://storage.googleapis.com/kubernetes-release/network-plugins/cni-07a8a28637e97b22eb8dfe710eeae1344f69d16e.tar.gz
 sudo tar -xvf cni-07a8a28637e97b22eb8dfe710eeae1344f69d16e.tar.gz -C /opt/cni
+```
 
+#### k8s worker binaries
 
-## k8s worker binaries
-
+```bash
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kubectl
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kube-proxy
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kubelet
@@ -521,9 +561,11 @@ users:
 - name: kubelet
   user:
     token: chAng3m3" > /var/lib/kubelet/kubeconfig'
-    
-## kubelet systemd unit file
+```
 
+#### kubelet systemd unit file
+
+```bash
 sudo sh -c 'echo "[Unit]
 Description=Kubernetes Kubelet
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
@@ -558,12 +600,13 @@ sudo systemctl daemon-reload
 sudo systemctl enable kubelet
 sudo systemctl start kubelet
 sudo systemctl status kubelet --no-pager
+```
 
 
 
+#### kube-proxy
 
-## kube-proxy
-
+```bash
 sudo sh -c 'echo "[Unit]
 Description=Kubernetes Kube Proxy
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
@@ -587,11 +630,12 @@ sudo systemctl start kube-proxy
 
 
 sudo systemctl status kube-proxy --no-pager
-
+```
 
 ################################################################################
 ### configure clients on base machine
 
+```
 wget https://storage.googleapis.com/kubernetes-release/release/v1.4.0/bin/linux/amd64/kubectl
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin
@@ -601,15 +645,16 @@ kubectl config set-cluster kubernetes-the-hard-way \
   --certificate-authority=ca.pem \
   --embed-certs=true \
   --server=https://192.168.50.10:6443
-  
+
 kubectl config set-credentials admin --token chAng3m3
 
 kubectl config set-context default-context \
   --cluster=kubernetes-the-hard-way \
   --user=admin
-  
+
 kubectl config use-context default-context
 kubectl get componentstatuses
+```
 ################################################################################
 
 
