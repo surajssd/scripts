@@ -12,7 +12,12 @@ fi
 su -c 'dnf -y install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
 
 sudo dnf -y update
-sudo dnf -y install python-pip gcc-c++ hexchat @virtualization vlc unzip qbittorrent vim python-devel ruby-devel vagrant vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl gnome-tweak-tool python3-ipython percol python-virtualenvwrapper docker git hg gcc make byobu nload htop libvirt-client xsel tig
+sudo dnf -y install python-pip gcc-c++ hexchat @virtualization \
+    vlc unzip qbittorrent vim python-devel ruby-devel vagrant \
+    vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl \
+    gnome-tweak-tool python3-ipython percol python-virtualenvwrapper \
+    docker git hg gcc make byobu nload htop libvirt-client xsel tig \
+    pass
 
 sudo dnf -y groupinstall "Development Tools"
 
@@ -22,7 +27,7 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 #===================================================================
 # create go workspace
 mkdir $HOME/go
-echo "export GOPATH=\$HOME/work" >> ~/.bashrc
+echo "export GOPATH=\$HOME/go" >> ~/.bashrc
 echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
 echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
 

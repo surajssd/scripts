@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
 
     # export all the paths and variables
     mkdir $HOME/go
-    echo "export GOPATH=\$HOME/work" >> ~/.bashrc
+    echo "export GOPATH=\$HOME/go" >> ~/.bashrc
     echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
     echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
 
