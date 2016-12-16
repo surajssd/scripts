@@ -20,11 +20,11 @@ fi
 sudo dnf -y update
 # git for go, wget to pull go, python2 for pip and percol
 # cmake, gcc, gcc-c++, python-devel, make for vim plugin installer
-sudo dnf -y install git wget vim python2 cmake gcc-c++ gcc python-devel make \
-                    percol byobu nload
+sudo dnf -y install git wget vim python2 golang cmake gcc-c++ gcc python-devel make \
+                    percol byobu nload glib2-devel glibc-static libseccomp-devel
 
 # install go latest
-curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
+# curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
 ###############################
 # export all the paths and variables
 mkdir $HOME/go
