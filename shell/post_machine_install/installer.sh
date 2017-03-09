@@ -29,11 +29,13 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 mkdir $HOME/go
 echo "export GOPATH=\$HOME/go" >> ~/.bashrc
 echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+echo "export GOBIN=\$GOPATH/bin" >> ~/.bashrc
 echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
 
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
 #===================================================================

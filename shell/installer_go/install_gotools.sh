@@ -12,11 +12,13 @@ if [ $? -ne 0 ]; then
     mkdir $HOME/go
     echo "export GOPATH=\$HOME/go" >> ~/.bashrc
     echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+    echo "export GOBIN=\$GOPATH/bin" >> ~/.bashrc
     echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
 
 
     export GOPATH=$HOME/go
     export PATH=$PATH:$GOPATH/bin
+    export GOBIN=$GOPATH/bin
     export PATH=$PATH:/usr/local/go/bin
 fi
 
@@ -34,3 +36,5 @@ go get -u -v github.com/tpng/gopkgs
 go get -u -v github.com/newhook/go-symbols
 go get -u -v golang.org/x/tools/cmd/guru
 go get -u -v github.com/cweill/gotests/...
+go get -u github.com/Masterminds/glide
+go get github.com/sgotti/glide-vc

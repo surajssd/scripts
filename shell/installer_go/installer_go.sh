@@ -30,11 +30,13 @@ sudo dnf -y install git wget vim python2 golang cmake gcc-c++ gcc python-devel m
 mkdir $HOME/go
 echo "export GOPATH=\$HOME/go" >> ~/.bashrc
 echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
+echo "export GOBIN=\$GOPATH/bin" >> ~/.bashrc
 echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
 
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 ###############################
 # Install gotools
