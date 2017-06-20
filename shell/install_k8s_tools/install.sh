@@ -25,16 +25,18 @@ fi
 which kubectx
 if [ $? -ne 0 ]; then
 	echo "Installing kubectx"
-    curl https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -o ~/.local/bin/kubectx
-    chmod a+x ~/.local/bin/kubectx
+    mkdir ~/.local/bin/kubectx
+    git clone https://github.com/ahmetb/kubectx ~/.local/bin/kubectx
+    echo 'alias kubectx=~/.local/bin/kubectx/kubectx' >> ~/.bashrc
 fi
 
 # install kubens
 which kubens
 if [ $? -ne 0 ]; then
     echo "Installing kubens"
-    curl https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -o ~/.local/bin/kubens
-    chmod a+x ~/.local/bin/kubens
+    mkdir ~/.local/bin/kubectx
+    git clone https://github.com/ahmetb/kubectx ~/.local/bin/kubectx
+    echo 'alias kubens=~/.local/bin/kubectx/kubens' >> ~/.bashrc
 fi
 
 # install kproject.sh
