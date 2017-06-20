@@ -29,6 +29,14 @@ if [ $? -ne 0 ]; then
     chmod a+x ~/.local/bin/kubectx
 fi
 
+# install kubens
+which kubens
+if [ $? -ne 0 ]; then
+    echo "Installing kubens"
+    curl https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens -o ~/.local/bin/kubens
+    chmod a+x ~/.local/bin/kubens
+fi
+
 # install kproject.sh
 which kproject.sh
 if [ $? -ne 0 ]; then
