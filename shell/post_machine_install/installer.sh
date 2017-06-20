@@ -17,7 +17,7 @@ sudo dnf -y install python-pip gcc-c++ hexchat @virtualization \
     vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl \
     gnome-tweak-tool python3-ipython percol python-virtualenvwrapper \
     docker git hg gcc make byobu nload htop libvirt-client xsel tig \
-    pass
+    pass gstreamer1-libav
 
 sudo dnf -y groupinstall "Development Tools"
 
