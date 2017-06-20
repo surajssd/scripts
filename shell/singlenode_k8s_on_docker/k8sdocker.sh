@@ -50,7 +50,14 @@ docker run -d \
 
 
 
-curl -sSL "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" > /home/vagrant/kubectl
+curl -sSL "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" > /home/vagrant/kubectl
+# OR do it this way
+# wget https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl
+# OR 
+# curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+
+
 sudo mv /home/vagrant/kubectl /usr/bin/
 sudo chmod a+x /usr/bin/kubectl
 
