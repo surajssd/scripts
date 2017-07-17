@@ -8,7 +8,8 @@ mkdir -p ~/.local/bin
 which kubectl
 if [ $? -ne 0 ]; then
 	echo "Installing kubectl"
-	curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl ~/.local/bin/kubectl
+	wget https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    mv kubectl ~/.local/bin/
 	chmod a+x ~/.local/bin/kubectl
 fi
 
@@ -16,9 +17,11 @@ fi
 which oc
 if [ $? -ne 0 ]; then
 	echo "Installing oc"
-	curl -LO https://github.com/openshift/origin/releases/download/v3.6.0-alpha.2/openshift-origin-client-tools-v3.6.0-alpha.2-3c221d5-linux-64bit.tar.gz
+    cd ~/.local/bin
+	wget https://github.com/openshift/origin/releases/download/v3.6.0-alpha.2/openshift-origin-client-tools-v3.6.0-alpha.2-3c221d5-linux-64bit.tar.gz
 	tar -xvzf openshift-origin-client-*
 	cp openshift-origin-client-tools*/oc ./
+    cd ~
 fi
 
 # install kubectx
