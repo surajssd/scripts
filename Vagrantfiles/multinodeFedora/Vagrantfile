@@ -3,17 +3,17 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "fedmaster" do |fedmaster|
-    fedmaster.vm.box = "fedora/25-cloud-base"
+    fedmaster.vm.box = "fedora/26-cloud-base"
     fedmaster.vm.hostname = "fedmaster"
   end
 
   config.vm.define "fedminion1" do |fedminion1|
-    fedminion1.vm.box = "fedora/25-cloud-base"
+    fedminion1.vm.box = "fedora/26-cloud-base"
     fedminion1.vm.hostname = "fedminion1"
   end
 
   config.vm.define "fedminion2" do |fedminion2|
-    fedminion2.vm.box = "fedora/25-cloud-base"
+    fedminion2.vm.box = "fedora/26-cloud-base"
     fedminion2.vm.hostname = "fedminion2"
   end
 
