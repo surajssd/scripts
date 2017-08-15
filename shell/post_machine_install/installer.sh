@@ -21,28 +21,9 @@ sudo dnf -y install python-pip gcc-c++ hexchat @virtualization golang \
 
 sudo dnf -y groupinstall "Development Tools"
 
-###############################
-# export all the paths and variables
-mkdir $HOME/go
-echo '
-#################################
-# Setting golang envs
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
-
-#################################
-' | tee -a ~/.bashrc
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
-
-###############################
-
-
-#===================================================================
+===================================================================
 # install gotools
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
 

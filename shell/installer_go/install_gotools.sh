@@ -6,26 +6,8 @@ set -x
 which go
 if [ $? -ne 0 ]; then
     sudo dnf -y install golang
-
-    ###############################
-    # export all the paths and variables
-    mkdir $HOME/go
-    echo '
-    #################################
-    # Setting golang envs
-    
-    export GOPATH=$HOME/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN:/usr/local/go/bin
-    
-    #################################
-    ' | tee -a ~/.bashrc
-    
-    export GOPATH=$HOME/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN:/usr/local/go/bin
-    
-    ###############################
+    curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
+   
 fi
 
 go get -u -v golang.org/x/tools/cmd/goimports

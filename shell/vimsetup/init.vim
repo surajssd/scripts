@@ -4,7 +4,7 @@ Plug 'tpope/vim-sensible'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'nsf/gocode', { 'rtp': 'vim',

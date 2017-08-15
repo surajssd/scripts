@@ -1,23 +1,13 @@
 #!/bin/bash
+set -x
+
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fastmirror.sh | sh
 
 # make sure your golang is properly setup
 sudo dnf -y install golang git
 
-###############################
-# export all the paths and variables
-mkdir $HOME/go
-echo '
-#################################
-# Setting golang envs
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
-#################################
-' | tee -a ~/.bashrc
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
+# setup gopath
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
 # make sure you have gotools are pulled up
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh

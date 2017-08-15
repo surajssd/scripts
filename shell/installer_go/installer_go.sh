@@ -23,24 +23,7 @@ sudo dnf -y update
 sudo dnf -y install git wget vim python2 golang cmake gcc-c++ gcc python-devel make \
                     percol byobu nload glib2-devel glibc-static libseccomp-devel
 
-###############################
-# export all the paths and variables
-mkdir $HOME/go
-echo '
-#################################
-# Setting golang envs
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
-
-#################################
-' | tee -a ~/.bashrc
-
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:/usr/local/go/bin
-
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 ###############################
 # Install gotools
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
