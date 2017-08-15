@@ -12,7 +12,7 @@ fi
 su -c 'dnf -y install http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
 
 sudo dnf -y update
-sudo dnf -y install python-pip gcc-c++ hexchat @virtualization \
+sudo dnf -y install python-pip gcc-c++ hexchat @virtualization golang \
     vlc unzip qbittorrent vim python-devel ruby-devel vagrant \
     vagrant-libvirt httrack tuxtype2 hstr cmake rpm-build youtube-dl \
     gnome-tweak-tool python3-ipython percol python-virtualenvwrapper \
@@ -21,22 +21,26 @@ sudo dnf -y install python-pip gcc-c++ hexchat @virtualization \
 
 sudo dnf -y groupinstall "Development Tools"
 
-# install go latest
-curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
-
-#===================================================================
-# create go workspace
+###############################
+# export all the paths and variables
 mkdir $HOME/go
-echo "export GOPATH=\$HOME/go" >> ~/.bashrc
-echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
-echo "export GOBIN=\$GOPATH/bin" >> ~/.bashrc
-echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
-
+echo '
+#################################
+# Setting golang envs
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOBIN:/usr/local/go/bin
+
+#################################
+' | tee -a ~/.bashrc
+
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN:/usr/local/go/bin
+
+###############################
+
 
 #===================================================================
 # install gotools

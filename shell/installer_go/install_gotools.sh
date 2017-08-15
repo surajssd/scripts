@@ -5,21 +5,27 @@ set -x
 # check if go is installed
 which go
 if [ $? -ne 0 ]; then
-    # install go latest
-    curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/pullgo.sh | sh
+    sudo dnf -y install golang
 
+    ###############################
     # export all the paths and variables
     mkdir $HOME/go
-    echo "export GOPATH=\$HOME/go" >> ~/.bashrc
-    echo "export PATH=\$PATH:\$GOPATH/bin" >> ~/.bashrc
-    echo "export GOBIN=\$GOPATH/bin" >> ~/.bashrc
-    echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
-
-
+    echo '
+    #################################
+    # Setting golang envs
+    
     export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
     export GOBIN=$GOPATH/bin
-    export PATH=$PATH:/usr/local/go/bin
+    export PATH=$PATH:$GOBIN:/usr/local/go/bin
+    
+    #################################
+    ' | tee -a ~/.bashrc
+    
+    export GOPATH=$HOME/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN:/usr/local/go/bin
+    
+    ###############################
 fi
 
 go get -u -v golang.org/x/tools/cmd/goimports
