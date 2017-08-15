@@ -3,8 +3,8 @@ set -x
 
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fastmirror.sh | sh
 
-# make sure your golang is properly setup
-sudo dnf -y install golang git
+# install all the dnf based dependencies
+sudo dnf -y install golang git neovim ctags-etags
 
 # setup gopath
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
@@ -12,15 +12,14 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 # make sure you have gotools are pulled up
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
 
-
-which nvim
+# make nvim as alias for vim and vi
+cat ~/.bashrc | grep 'nvim'
 if [ $? -ne 0 ]; then
-	sudo dnf -y install neovim ctags-etags
-fi
-
-echo '
+    echo '
 alias vim=nvim
+alias vi=nvim
 ' | tee -a ~/.bashrc
+fi
 
 # Download the init.vim
 mkdir -p $HOME/.config/nvim
