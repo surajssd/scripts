@@ -68,14 +68,7 @@ vim -c ':GoInstallBinaries' -c ':q!'
 
 ###############################
 # install other things
-
-cd
-git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
-echo '#=================================================================' >> ~/.bashrc
-echo 'source ~/.bash-git-prompt/gitprompt.sh' >> ~/.bashrc
-echo 'GIT_PROMPT_ONLY_IN_REPO=1' >> ~/.bashrc
-echo '#' >> ~/.bashrc
-
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/gitprompt.sh | sh
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
