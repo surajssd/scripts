@@ -16,4 +16,4 @@ GIT_PROMPT_ONLY_IN_REPO=1
 ' | tee -a ~/.bashrc
 
 fi
-
+source ~/.bashrc
