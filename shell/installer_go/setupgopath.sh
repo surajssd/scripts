@@ -2,6 +2,9 @@
 
 set -x
 
+# Install bash-completion so that CDPATH works
+sudo dnf -y install bash-completion
+
 ###############################
 # export all the paths and variables
 

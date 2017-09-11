@@ -2,12 +2,12 @@
 
 cd
 
-cat ~/.bashrc | grep 'aliases'
+cat ~/.bashrc | grep 'my aliases'
 if [ $? -ne 0 ]; then
 
 echo '
 #=================================================================
-# aliases
+# my aliases
 
 # GIT related
 alias gpm="git pull --ff upstream master"
