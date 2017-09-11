@@ -10,8 +10,8 @@ echo '
 # my aliases
 
 # GIT related
-alias gpm="git pull --ff upstream master"
-alias gcm="git checkout master"
+alias gpm="'"git pull --ff upstream master"'"
+alias gcm="'"git checkout master"'"
 
 function pr() {
     id=$1
