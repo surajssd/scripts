@@ -10,7 +10,8 @@ echo '
 # my aliases
 
 # GIT related
-alias gpm="'"git pull --ff upstream master"'"
+alias gpum="'"git pull --ff upstream master"'"
+alias gpom="'"git pull --ff origin master"'"
 alias gcm="'"git checkout master"'"
 
 function pr() {
@@ -21,6 +22,7 @@ function pr() {
     fi
     git fetch upstream pull/${id}/head:pr_${id}
     git checkout pr_${id}
+    git rebase master -i
 }
 
 # Kubernetes related
