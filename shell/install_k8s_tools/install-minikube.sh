@@ -2,7 +2,7 @@
 
 set -x
 
-curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/setup-docker-machine-driver.sh | sh
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/install_k8s_tools/setup-docker-machine-driver.sh | sh
 
 
 which minikube
