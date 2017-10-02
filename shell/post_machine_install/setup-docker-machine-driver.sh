@@ -1,6 +1,6 @@
 #!/bin/bash                                    
 
-set -xe                                        
+set -x                                        
 
 which docker-machine-driver-kvm                
 if [ $? -ne 0 ]; then                          
