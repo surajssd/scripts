@@ -2,7 +2,7 @@
 
 set -x
 
-VERSION=1.9
+VERSION=1.9.1
 
 # check if wget is installed
 which wget
