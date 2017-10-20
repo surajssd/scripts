@@ -23,6 +23,5 @@ export CDPATH=.:$GOPATH/src/github.com:$GOPATH/src
 #################################
 ' | tee -a ~/.bashrc
     
-    source ~/.bashrc
 fi
 

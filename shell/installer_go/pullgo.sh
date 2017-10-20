@@ -2,7 +2,7 @@
 
 set -x
 
-
+sudo dnf -y install git
 # check if wget is installed
 which wget
 if [ $? -ne 0 ]; then sudo dnf -y install wget; fi
