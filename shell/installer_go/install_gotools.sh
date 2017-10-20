@@ -2,14 +2,6 @@
 
 set -x
 
-# check if go is installed
-which go
-if [ $? -ne 0 ]; then
-    sudo dnf -y install golang
-    curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
-   
-fi
-
 go get -u -v golang.org/x/tools/cmd/goimports
 go get -u -v github.com/nsf/gocode
 go get -u -v github.com/rogpeppe/godef
