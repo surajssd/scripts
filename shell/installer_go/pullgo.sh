@@ -15,3 +15,4 @@ wget $(grep -r linux /tmp/golangversion  | grep amd64 | grep "storage.googleapis
 
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go*
+sudo ln -s /usr/local/go/bin/go /usr/local/sbin/go
