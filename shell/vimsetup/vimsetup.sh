@@ -29,6 +29,9 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/in
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# source bashrc
+source ~/.bashrc
+
 # Setup all the nvim setup
 echo "Run ':GoInstallBinaries' in your vim when you open it!"
 nvim -c ':GoInstallBinaries' -c ':q!'

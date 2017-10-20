@@ -9,7 +9,7 @@ which kubectl
 if [ $? -ne 0 ]; then
 	echo "Installing kubectl"
 	wget https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    mv kubectl ~/.local/bin/
+	mv kubectl ~/.local/bin/
 	chmod a+x ~/.local/bin/kubectl
 fi
 
@@ -17,29 +17,11 @@ fi
 which oc
 if [ $? -ne 0 ]; then
 	echo "Installing oc"
-    cd ~/.local/bin
+	cd ~/.local/bin
 	wget https://github.com/openshift/origin/releases/download/v3.6.0-alpha.2/openshift-origin-client-tools-v3.6.0-alpha.2-3c221d5-linux-64bit.tar.gz
 	tar -xvzf openshift-origin-client-*
 	cp openshift-origin-client-tools*/oc ./
-    cd ~
-fi
-
-# install kubectx
-which kubectx
-if [ $? -ne 0 ]; then
-	echo "Installing kubectx"
-    mkdir ~/.local/bin/kubectx
-    git clone https://github.com/ahmetb/kubectx ~/.local/bin/kubectx
-    echo 'alias kubectx=~/.local/bin/kubectx/kubectx' >> ~/.bashrc
-fi
-
-# install kubens
-which kubens
-if [ $? -ne 0 ]; then
-    echo "Installing kubens"
-    mkdir ~/.local/bin/kubectx
-    git clone https://github.com/ahmetb/kubectx ~/.local/bin/kubectx
-    echo 'alias kubens=~/.local/bin/kubectx/kubens' >> ~/.bashrc
+	cd ~
 fi
 
 # install kproject.sh

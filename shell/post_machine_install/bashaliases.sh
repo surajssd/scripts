@@ -25,9 +25,6 @@ function pr() {
     git rebase master -i
 }
 
-# Kubernetes related
-alias k=kubectl
-
 # Vim related
 alias vim=nvim
 alias vi=nvim

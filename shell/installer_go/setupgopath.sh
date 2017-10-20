@@ -23,8 +23,6 @@ export CDPATH=.:$GOPATH/src/github.com:$GOPATH/src
 #################################
 ' | tee -a ~/.bashrc
     
-    export GOPATH=$HOME/go
-    export GOBIN=$GOPATH/bin
-    export PATH=$PATH:$GOBIN:/usr/local/go/bin
+    source ~/.bashrc
 fi
 
