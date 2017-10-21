@@ -21,7 +21,9 @@ source ~/.bashrc
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
 
 # install tools
-sudo dnf -y install byobu docker make gcc zip mercurial krb5-devel bsdtar bc rsync bind-utils file jq tito createrepo openssl gpgme gpgme-devel libassuan libassuan-devel
+sudo dnf -y install htop byobu docker make gcc zip mercurial krb5-devel bsdtar \
+	bc rsync bind-utils file jq tito createrepo openssl gpgme gpgme-devel \
+	libassuan libassuan-devel
 
 # start docker
 sudo systemctl enable --now docker
