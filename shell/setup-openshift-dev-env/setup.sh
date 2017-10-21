@@ -43,6 +43,8 @@ echo '
 # OpenShift specific envs
 
 export OS_OUTPUT_GOPATH=1
+export PATH=$PATH:$GOPATH/src/github.com/openshift/origin/_output/local/bin/linux/amd64
+alias kubectl=$GOPATH/src/k8s.io/kubernetes/cluster/kubectl.sh
 
 #################################
 ' | tee -a ~/.bashrc
@@ -53,6 +55,7 @@ cd $GOPATH/src/github.com/openshift/origin
 cp ./_output/tools/etcd/bin/etcd /usr/local/sbin/
 cp ./_output/tools/etcd/bin/etcdctl /usr/local/sbin/
 
+cd
 # add k8s aliases
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/install_k8s_tools/k8s-alias.sh | sh
 
