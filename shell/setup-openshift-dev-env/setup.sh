@@ -26,8 +26,6 @@ sudo dnf -y install byobu docker make gcc zip mercurial krb5-devel bsdtar bc rsy
 # start docker
 sudo systemctl enable --now docker
 
-# export envs
-echo 'export OS_OUTPUT_GOPATH=1' | tee -a ~/.bashrc
 
 # download the origin src repo
 mkdir -p $GOPATH/src/github.com/openshift
@@ -38,6 +36,16 @@ git remote add upstream git@github.com:openshift/origin.git
 git remote remove origin
 git remote add origin git@github.com:surajssd/origin.git
 
+
+# export envs
+echo '
+#################################
+# OpenShift specific envs
+
+export OS_OUTPUT_GOPATH=1
+
+#################################
+' | tee -a ~/.bashrc
 
 # install etcd
 cd $GOPATH/src/github.com/openshift/origin
@@ -52,12 +60,10 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/install_k8s
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fzfinstaller.sh | sh
 
 # download gitconfig and gitignore
-cd
-curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/.gitconfig
-curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/.gitignore
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/setup-git-config.sh | sh
 
 # install vim
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/vimsetup.sh | sh
 
 # generate ssh keys in this machine
-
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/ssh-key-gen.sh | sh
