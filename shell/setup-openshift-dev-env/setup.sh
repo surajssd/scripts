@@ -11,6 +11,9 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 # setup gopath
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/setupgopath.sh | sh
 
+# install bashgitprompt
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/gitprompt.sh | sh
+
 # load all the envs
 source ~/.bashrc
 
@@ -42,3 +45,11 @@ cd $GOPATH/src/github.com/openshift/origin
 cp ./_output/tools/etcd/bin/etcd /usr/local/sbin/
 cp ./_output/tools/etcd/bin/etcdctl /usr/local/sbin/
 
+# add k8s aliases
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/install_k8s_tools/k8s-alias.sh | sh
+
+# install fzf
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fzfinstaller.sh | sh
+
+# install vim
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/vimsetup.sh | sh
