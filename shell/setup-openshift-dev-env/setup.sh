@@ -51,5 +51,13 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/install_k8s
 # install fzf
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fzfinstaller.sh | sh
 
+# download gitconfig and gitignore
+cd
+curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/.gitconfig
+curl -O https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/.gitignore
+
 # install vim
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/vimsetup.sh | sh
+
+# generate ssh keys in this machine
+
