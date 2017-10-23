@@ -20,9 +20,6 @@ source ~/.bashrc
 # install the gotools
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_go/install_gotools.sh | sh
 
-# install cfssl
-go get -u github.com/cloudflare/cfssl/cmd/cfssl
-
 # install tools
 sudo dnf -y install htop byobu docker make gcc zip mercurial krb5-devel bsdtar \
 	bc rsync bind-utils file jq tito createrepo openssl gpgme gpgme-devel \
@@ -31,6 +28,8 @@ sudo dnf -y install htop byobu docker make gcc zip mercurial krb5-devel bsdtar \
 # start docker
 sudo systemctl enable --now docker
 
+# install cfssl
+go get -u github.com/cloudflare/cfssl/cmd/cfssl
 
 # download the origin src repo
 mkdir -p $GOPATH/src/github.com/openshift
