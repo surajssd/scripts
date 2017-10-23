@@ -70,7 +70,7 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machin
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/setup-git-config.sh | sh
 
 # install vim
-curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/vimsetup.sh | sh
+# curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/vimsetup/vimsetup.sh | sh
 
 # generate ssh keys in this machine
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/ssh-key-gen.sh | sh
