@@ -11,7 +11,7 @@ mkdir -p /tmp/goinstall
 cd /tmp/goinstall
 
 wget -O /tmp/golangversion https://golang.org/dl/
-wget $(grep -r linux /tmp/golangversion  | grep amd64 | grep "storage.googleapis.com" | head -1 | grep -Eo 'https://[^ ">]+')
+wget $(grep -r linux /tmp/golangversion  | grep amd64 | grep "redirector.gvt1.com" | head -1 | grep -Eo 'https://[^ ">]+')
 
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go*
