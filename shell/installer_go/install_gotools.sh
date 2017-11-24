@@ -19,6 +19,7 @@ go get -u -v github.com/cweill/gotests/...
 go get -u -v github.com/Masterminds/glide
 go get -u -v github.com/sgotti/glide-vc
 go get -u -v github.com/alecthomas/gometalinter
+gometalinter --install
 go get -u -v github.com/jstemmer/gotags
 go get -u -v github.com/klauspost/asmfmt/cmd/asmfmt
 go get -u -v github.com/fatih/motion
