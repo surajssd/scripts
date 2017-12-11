@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -x
+
+version=$1
+if [ -z $version ]; then
+    echo "Please provide the oc version"
+    exit 1
+fi
+
+cd /tmp
+
+domain="https://github.com"
+link=$(curl https://github.com/openshift/origin/releases/tag/$version | grep 'openshift/origin/releases/download' | grep 'linux-64bit.tar.gz' | head -1 | grep -oPm1 '(?<= href=")[^"]+')
+
+curl -LO $domain$link
+tar -xvzf openshift-origin-client-tools*
+cp openshift-origin-client-tools*/oc ~/.local/bin
+
