@@ -14,6 +14,9 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/installer_g
 # install bashgitprompt
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/gitprompt.sh | sh
 
+# install bashaliases
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/bashaliases.sh | sh
+
 # load all the envs
 source ~/.bashrc
 

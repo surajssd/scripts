@@ -8,7 +8,7 @@ fi;
 
 RANDOM=$$
 rand=${RANDOM}
-curl -o /tmp/diff-${rand} ${url}raw
+curl -o /tmp/diff-${rand} ${url}/raw
 
 git checkout .
 git apply /tmp/diff-${rand}
