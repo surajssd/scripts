@@ -17,6 +17,9 @@ curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machin
 # install bashaliases
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/bashaliases.sh | sh
 
+# install all the scripts I generally use
+curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/install-my-scripts.sh | sh
+
 # load all the envs
 source ~/.bashrc
 
@@ -55,6 +58,37 @@ git remote add upstream git@github.com:projectatomic/libpod.git
 git remote remove origin
 git remote add origin git@github.com:surajssd/libpod.git
 
+# setup CNI plugins
+# following steps are taken from https://github.com/kubernetes-incubator/cri-o/blob/master/tutorial.md#cni-plugins
+go get -d github.com/containernetworking/plugins
+cd $GOPATH/src/github.com/containernetworking/plugins
+./build.sh
+sudo mkdir -p /opt/cni/bin
+sudo cp bin/* /opt/cni/bin/
+sudo mkdir -p /etc/cni/net.d
+sudo sh -c 'cat >/etc/cni/net.d/10-mynet.conf <<-EOF
+{
+    "cniVersion": "0.2.0",
+    "name": "mynet",
+    "type": "bridge",
+    "bridge": "cni0",
+    "isGateway": true,
+    "ipMasq": true,
+    "ipam": {
+        "type": "host-local",
+        "subnet": "10.88.0.0/16",
+        "routes": [
+            { "dst": "0.0.0.0/0"  }
+        ]
+    }
+}
+EOF'
+sudo sh -c 'cat >/etc/cni/net.d/99-loopback.conf <<-EOF
+{
+    "cniVersion": "0.2.0",
+    "type": "loopback"
+}
+EOF'
 
 # install fzf
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fzfinstaller.sh | sh
