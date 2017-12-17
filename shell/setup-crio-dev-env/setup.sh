@@ -54,6 +54,7 @@ mkdir -p $GOPATH/src/github.com/projectatomic
 cd $GOPATH/src/github.com/projectatomic
 git clone https://github.com/projectatomic/libpod
 cd libpod
+make install.tools
 git remote add upstream git@github.com:projectatomic/libpod.git
 git remote remove origin
 git remote add origin git@github.com:surajssd/libpod.git
