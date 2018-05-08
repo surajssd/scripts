@@ -7,14 +7,14 @@ if [ -z $version ]; then
 fi
 
 # check if git is installed, if not install it
-if ![ -x "$(command -v git)" ]; then
+if ! [ -x "$(command -v git)" ]; then
     echo "Installing git..."
     sudo dnf -y install git
 fi
 
 
 # check if wget is installed
-if ![ -x "$(command -v wget)" ]; then
+if ! [ -x "$(command -v wget)" ]; then
     echo "Installing wget..."
     sudo dnf -y install wget
 fi
