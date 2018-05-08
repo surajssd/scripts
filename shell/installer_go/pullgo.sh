@@ -19,11 +19,13 @@ if ! [ -x "$(command -v wget)" ]; then
     sudo dnf -y install wget
 fi
 
-mkdir -p /tmp/goinstall
-cd /tmp/goinstall
+# download it in random location
+rand=$RANDOM
+path=/tmp/goinstall-$rand
+mkdir -p $path
+cd $path
 
 file=$version.linux-amd64.tar.gz
-rm -rf $file
 url=https://dl.google.com/go/$file
 
 echo "Downloading from $url"
