@@ -22,12 +22,14 @@ fi
 mkdir -p /tmp/goinstall
 cd /tmp/goinstall
 
-url=https://dl.google.com/go/$version.linux-amd64.tar.gz
+file=$version.linux-amd64.tar.gz
+rm -rf $file
+url=https://dl.google.com/go/$file
 
 echo "Downloading from $url"
 wget $url
 if [ $? -ne 0 ]; then
-    echo "Go downloading failed"
+    echo "Go downloading failed!"
     exit 1
 fi
 
@@ -35,5 +37,10 @@ echo "Uninstalling $(go version)"
 sudo rm -rf /usr/local/go
 
 echo "Installing new $version"
-sudo tar -C /usr/local -xzf go*
+sudo tar -C /usr/local -xzf $file
+if [ $? -ne 0 ]; then
+    echo "Go installing failed!"
+    exit 1
+fi
+
 sudo ln -s /usr/local/go/bin/go /usr/local/sbin/go
