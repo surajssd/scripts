@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -x
-
-mkdir -p ~/.local/bin/
-cd /tmp
-curl -LO http://artifacts.ci.centos.org/minishift/minishift/master/latest/linux-amd64/minishift && chmod +x minishift && mv minishift ~/.local/bin/
