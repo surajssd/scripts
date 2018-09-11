@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # enable fastmirror
 curl https://raw.githubusercontent.com/surajssd/scripts/master/shell/post_machine_install/fastmirror.sh | sh
 
@@ -23,15 +25,18 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 systemctl enable kubelet && systemctl start kubelet
 
 
-# set SELinux context
+# set SELinux context kubernetes files
 mkdir -p /etc/kubernetes/
 chcon -R -t svirt_sandbox_file_t /etc/kubernetes/
 
+# set SELinux context for etcd files
 mkdir -p /var/lib/etcd
 chcon -R -t svirt_sandbox_file_t /var/lib/etcd
 
 
 # start kubeadm
+kubeadm config images pull
+kubeadm config images pull
 kubeadm init
 
 # set the kubectl context
