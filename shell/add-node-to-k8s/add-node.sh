@@ -36,12 +36,18 @@ fi
 readonly k8s_version="v1.11.2"
 readonly cfssl_version="R1.2"
 readonly crio_version="v1.11.2"
+readonly hostname=$(hostname)
+readonly ipaddr=$1
+readonly capem=$2
+readonly cakeypem=$3
+readonly caconfig=$4
 
 set -x
 
 apt-get update
 apt-get install -y socat libgpgme11
 
+# --------------------------------------------------
 # download tools
 mkdir tools
 cd tools
@@ -69,7 +75,8 @@ chmod +x \
   kubectl \
   runc
 
-
+# --------------------------------------------------
+# install those tools
 mkdir -p \
   /etc/containers \
   /etc/cni/net.d \
@@ -98,18 +105,11 @@ chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
 sudo mv -v cfssl_linux-amd64 /usr/local/bin/cfssl
 sudo mv -v cfssljson_linux-amd64 /usr/local/bin/cfssljson
 
-#=========================================================
+# --------------------------------------------------
 # generate config
 
 mkdir -p ~/config
 cd ~/config
-
-
-readonly hostname=$(hostname)
-readonly ipaddr=$1
-readonly capem=$2
-readonly cakeypem=$3
-readonly caconfig=$4
 
 # generate the 99-loopback.conf common for all the workers, can be copied
 cat > 99-loopback.conf <<EOF
@@ -283,7 +283,7 @@ RestartSec=5
 WantedBy=multi-user.target
 EOF
 
-
+# --------------------------------------------------
 # install above generated config
 cp 99-loopback.conf /etc/cni/net.d
 cp kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
