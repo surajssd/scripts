@@ -102,8 +102,8 @@ curl -sSL \
 
 chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
 
-sudo mv -v cfssl_linux-amd64 /usr/local/bin/cfssl
-sudo mv -v cfssljson_linux-amd64 /usr/local/bin/cfssljson
+mv -v cfssl_linux-amd64 /usr/local/bin/cfssl
+mv -v cfssljson_linux-amd64 /usr/local/bin/cfssljson
 
 # --------------------------------------------------
 # generate config
