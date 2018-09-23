@@ -275,6 +275,7 @@ ExecStart=/usr/local/bin/kubelet \\
   --runtime-request-timeout=10m \\
   --tls-cert-file=/var/lib/kubelet/${hostname}.pem \\
   --tls-private-key-file=/var/lib/kubelet/${hostname}-key.pem \\
+  --node-ip=${ipaddr} \\
   --v=2
 Restart=on-failure
 RestartSec=5
