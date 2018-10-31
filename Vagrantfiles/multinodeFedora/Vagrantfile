@@ -3,25 +3,25 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "c0" do |c0|
-    c0.vm.box = "fedora/28-cloud-base"
+    c0.vm.box = "fedora/29-cloud-base"
     c0.vm.hostname = "c0"
     c0.vm.network "private_network", ip: "192.168.50.10"
   end
 
   config.vm.define "c1" do |c1|
-    c1.vm.box = "fedora/28-cloud-base"
+    c1.vm.box = "fedora/29-cloud-base"
     c1.vm.hostname = "c1"
     c1.vm.network "private_network", ip: "192.168.50.11"
   end
 
   config.vm.define "w0" do |w0|
-    w0.vm.box = "fedora/28-cloud-base"
+    w0.vm.box = "fedora/29-cloud-base"
     w0.vm.hostname = "w0"
     w0.vm.network "private_network", ip: "192.168.50.20"
   end
 
   config.vm.define "w1" do |w1|
-    w1.vm.box = "fedora/28-cloud-base"
+    w1.vm.box = "fedora/29-cloud-base"
     w1.vm.hostname = "w1"
     w1.vm.network "private_network", ip: "192.168.50.21"
   end
