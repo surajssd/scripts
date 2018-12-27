@@ -2,20 +2,29 @@
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
 
-  config.vm.define "fedmaster" do |fedmaster|
-    fedmaster.vm.box = "fedora/28-cloud-base"
-    fedmaster.vm.hostname = "fedmaster"
+  config.vm.define "c0" do |c0|
+    c0.vm.box = "fedora/28-cloud-base"
+    c0.vm.hostname = "c0"
   end
 
-  config.vm.define "fedminion1" do |fedminion1|
-    fedminion1.vm.box = "fedora/28-cloud-base"
-    fedminion1.vm.hostname = "fedminion1"
+
+  config.vm.define "c1" do |c1|
+    c1.vm.box = "fedora/28-cloud-base"
+    c1.vm.hostname = "c1"
   end
 
-  config.vm.define "fedminion2" do |fedminion2|
-    fedminion2.vm.box = "fedora/28-cloud-base"
-    fedminion2.vm.hostname = "fedminion2"
+
+  config.vm.define "w0" do |w0|
+    w0.vm.box = "fedora/28-cloud-base"
+    w0.vm.hostname = "w0"
   end
+
+
+  config.vm.define "w1" do |w1|
+    w1.vm.box = "fedora/28-cloud-base"
+    w1.vm.hostname = "w1"
+  end
+
 
   config.vm.provider "libvirt" do |libvirt, override|
     libvirt.driver = "kvm"
@@ -29,4 +38,3 @@ Vagrant.configure("2") do |config|
   SHELL
 
 end
-

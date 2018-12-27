@@ -31,4 +31,10 @@ Vagrant.configure("2") do |config|
     virtualbox.cpus = 2
   end
 
+
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    echo '127.0.0.1 localhost' | cat - /etc/hosts > temp && sudo mv temp /etc/hosts
+  SHELL
+
 end
